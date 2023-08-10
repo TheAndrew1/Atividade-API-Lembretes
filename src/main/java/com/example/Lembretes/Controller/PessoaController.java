@@ -26,7 +26,7 @@ public class PessoaController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<Pessoa>> findAll(@RequestParam("id") final Long id){
+    public ResponseEntity<List<Pessoa>> findAll(){
         try {
             return ResponseEntity.ok(pessoaService.findAll());
         }catch (Exception e) {

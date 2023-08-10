@@ -1,5 +1,6 @@
 package com.example.Lembretes.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +11,7 @@ import java.util.List;
 @Table(name = "pessoas", schema = "public")
 public class Pessoa {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter @Setter
     private Long id;
 
@@ -20,6 +21,7 @@ public class Pessoa {
     @Getter @Setter
     @OneToMany
     @JoinColumn(name = "id")
+    @JsonIgnore
     private List<Lembrete> lembretes;
 
     public Pessoa(){}
