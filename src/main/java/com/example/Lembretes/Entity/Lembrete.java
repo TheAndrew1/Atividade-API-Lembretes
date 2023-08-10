@@ -17,5 +17,6 @@ public class Lembrete {
 
     @Getter @Setter
     @ManyToOne
+    @Column(name = "pessoa_fk")
     private Pessoa pessoa;
 }
