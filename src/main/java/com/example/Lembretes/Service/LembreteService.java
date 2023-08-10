@@ -29,6 +29,7 @@ public class LembreteService {
     @Transactional(rollbackFor = Exception.class)
     public void create(LembreteDTO lembreteDTO) {
         Assert.isTrue(!lembreteDTO.getMensagem().isBlank(), "Mensagem não pode ser nula!");
+        Assert.notNull(lembreteDTO.getPessoa(), "Lembrete deve ser vinculado a uma pessoa!");
 
         lembreteRepository.save(this.toLembrete(lembreteDTO));
     }
@@ -39,6 +40,7 @@ public class LembreteService {
         Assert.notNull(lembreteDatabase, "Lembrete não encontrado!");
         Assert.isTrue(lembreteDatabase.getId().equals(lembreteDTO.getId()), "Lembretes não conferem!");
         Assert.isTrue(!lembreteDTO.getMensagem().isBlank(), "Mensagem não pode ser nula!");
+        Assert.notNull(lembreteDTO.getPessoa(), "Lembrete deve ser vinculado a uma pessoa!");
 
         lembreteRepository.save(toLembrete(lembreteDTO));
     }
