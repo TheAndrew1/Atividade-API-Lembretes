@@ -8,7 +8,7 @@ import lombok.Setter;
 @Table(name = "lembretes", schema = "public")
 public class Lembrete {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter @Setter
     private Long id;
 
@@ -17,7 +17,7 @@ public class Lembrete {
 
     @Getter @Setter
     @ManyToOne
-    @JoinColumn(name = "pessoa_fk")
+    @JoinColumn(name = "pessoa_fk", nullable = false)
     private Pessoa pessoa;
 
     public Lembrete(){}
