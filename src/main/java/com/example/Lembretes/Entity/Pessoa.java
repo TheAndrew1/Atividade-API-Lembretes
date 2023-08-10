@@ -24,6 +24,11 @@ public class Pessoa {
 
     public Pessoa(){}
 
+    public Pessoa(Long id, String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
+
     public Pessoa(Long id, String nome, List<Lembrete> lembretes){
         this.id = id;
         this.nome = nome;
