@@ -17,6 +17,14 @@ public class Lembrete {
 
     @Getter @Setter
     @ManyToOne
-    @Column(name = "pessoa_fk")
+    @JoinColumn(name = "pessoa_fk")
     private Pessoa pessoa;
+
+    public Lembrete(){}
+
+    public Lembrete(Long id, String mensagem, Pessoa pessoa){
+        this.id = id;
+        this.mensagem = mensagem;
+        this.pessoa = pessoa;
+    }
 }
