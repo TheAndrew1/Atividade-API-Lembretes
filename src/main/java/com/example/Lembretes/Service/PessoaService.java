@@ -19,6 +19,10 @@ public class PessoaService {
         return this.pessoaRepository.findById(id).orElseThrow();
     }
 
+    public Pessoa findByName(final String nome){
+        return this.pessoaRepository.findByNome(nome);
+    }
+
     public List<Pessoa> findAll(){
         return this.pessoaRepository.findAll();
     }
