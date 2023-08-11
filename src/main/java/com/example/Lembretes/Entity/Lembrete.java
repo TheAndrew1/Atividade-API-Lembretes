@@ -1,5 +1,6 @@
 package com.example.Lembretes.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,6 +19,7 @@ public class Lembrete {
     @Getter @Setter
     @ManyToOne
     @JoinColumn(name = "pessoa_fk", nullable = false)
+    @JsonBackReference
     private Pessoa pessoa;
 
     public Lembrete(){}

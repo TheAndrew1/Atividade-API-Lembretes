@@ -1,6 +1,7 @@
 package com.example.Lembretes.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +22,7 @@ public class Pessoa {
     @Getter @Setter
     @OneToMany
     @JoinColumn(name = "id")
+    @JsonManagedReference
     private List<Lembrete> lembretes;
 
     public Pessoa(){}
