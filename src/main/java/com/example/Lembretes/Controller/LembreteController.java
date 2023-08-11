@@ -25,14 +25,14 @@ public class LembreteController {
         }
     }
 
-    @GetMapping("/list")
-    public ResponseEntity<List<Lembrete>> findAll() {
-        try {
-            return ResponseEntity.ok(lembreteService.findAll());
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(new ArrayList<Lembrete>());
-        }
-    }
+//    @GetMapping("/list")
+//    public ResponseEntity<List<Lembrete>> findAll() {
+//        try {
+//            return ResponseEntity.ok(lembreteService.findAll());
+//        } catch (Exception e) {
+//            return ResponseEntity.badRequest().body(new ArrayList<Lembrete>());
+//        }
+//    }
 
     @PostMapping
     public ResponseEntity<String> create(@RequestBody final LembreteDTO lembreteDTO) {
