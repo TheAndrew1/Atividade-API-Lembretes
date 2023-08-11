@@ -34,6 +34,15 @@ public class LembreteController {
 //        }
 //    }
 
+    @GetMapping("/list")
+    public ResponseEntity<List<Lembrete>> findAllOfPessoa(@RequestParam("name") final String nome) {
+        try {
+            return ResponseEntity.ok(lembreteService.findAllOfPessoa(nome));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(new ArrayList<Lembrete>());
+        }
+    }
+
     @PostMapping
     public ResponseEntity<String> create(@RequestBody final LembreteDTO lembreteDTO) {
         try {
