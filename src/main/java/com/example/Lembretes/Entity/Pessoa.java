@@ -21,7 +21,6 @@ public class Pessoa {
     @Getter @Setter
     @OneToMany
     @JoinColumn(name = "id")
-    @JsonIgnore
     private List<Lembrete> lembretes;
 
     public Pessoa(){}
