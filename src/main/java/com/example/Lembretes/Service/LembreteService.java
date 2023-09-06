@@ -26,6 +26,10 @@ public class LembreteService {
         return this.lembreteRepository.findAll();
     }
 
+    public List<Lembrete> findAllOfPessoa(final String nome) {
+        return this.lembreteRepository.findByPessoa(pessoaService.findByName(nome).getId());
+    }
+
     @Transactional(rollbackFor = Exception.class)
     public void create(LembreteDTO lembreteDTO) {
         Assert.isTrue(!lembreteDTO.getMensagem().isBlank(), "Mensagem não pode ser nula!");
