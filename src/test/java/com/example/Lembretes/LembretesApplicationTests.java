@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest
@@ -23,8 +25,17 @@ class LembretesApplicationTests {
 	@BeforeEach
 	void injectData(){
 		Long id = 1L;
-		Optional<Pessoa> pessoa = Optional.of(new Pessoa(id, "Andre"));
-		Mockito.when(pessoaRepository.findById(id)).thenReturn(pessoa);
+		String nome = "Andre";
+		Pessoa pessoa = new Pessoa(id, nome);
+		List<Pessoa> pessoas = new ArrayList<Pessoa>();
+		pessoas.add(new Pessoa(1L, "Andre"));
+		pessoas.add(new Pessoa(2L, "Joao"));
+		pessoas.add(new Pessoa(3L, "Maria"));
+		pessoas.add(new Pessoa(4L, "Julia"));
+		pessoas.add(new Pessoa(5L, "Paulo"));
+		Mockito.when(pessoaRepository.findById(id)).thenReturn(Optional.of(pessoa));
+		Mockito.when(pessoaRepository.findByNome(nome)).thenReturn(pessoa);
+		Mockito.when(pessoaRepository.findAll()).thenReturn(pessoas);
 	}
 
 	@Test
@@ -34,4 +45,22 @@ class LembretesApplicationTests {
 		Assertions.assertEquals(1L, id);
 	}
 
+	@Test
+	void TestControllerFindByName(){
+		var pessoa = pessoaController.findByName("Andre");
+		String nome = pessoa.getBody().getNome();
+		Assertions.assertEquals("Andre", nome);
+	}
+
+	@Test
+	void TestControllerFindAll(){
+		var pessoas = pessoaController.findAll().getBody();
+		List<Pessoa> pessoasComp = new ArrayList<Pessoa>();
+		pessoasComp.add(new Pessoa(1L, "Andre"));
+		pessoasComp.add(new Pessoa(2L, "Joao"));
+		pessoasComp.add(new Pessoa(3L, "Maria"));
+		pessoasComp.add(new Pessoa(4L, "Julia"));
+		pessoasComp.add(new Pessoa(5L, "Paulo"));
+		Assertions.assertEquals(pessoasComp, pessoas);
+	}
 }
